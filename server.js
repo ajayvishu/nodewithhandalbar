@@ -8,7 +8,6 @@ const hbs = require('hbs');
 const bodyParser = require('body-parser');
 //use sql database
 const sql = require("mssql");
-
 const app = express();
 
 // Config for your database
@@ -20,7 +19,6 @@ var config = {
 };
 
 //connect to database
-
 sql.connect(config,function(err,res_suc){
 	if(err) throw err;
     console.log('sql connected...');
@@ -34,7 +32,7 @@ var  executeQuery = function(res, query){
             res.send(error_db);
         }
         else 
-		{
+	{
             var request = new sql.Request();
             request.query(query, function (error_query, res_data) {
                 if (error_query) {
@@ -43,9 +41,9 @@ var  executeQuery = function(res, query){
                 }
                 else {
                     console.table(res_data.recordset);
-					res.render('employee_view',{
-					  results: res_data.recordset
-					});
+		    res.render('employee_view',{
+			results: res_data.recordset
+		    });
                 }
             });
         }
@@ -76,7 +74,7 @@ app.post('/save',(req, res) => {
             res.send(error_db);
         }
         else 
-		{
+	{
             var request = new sql.Request();
             request.query(query, function (error_query, res_data) {
                 if (error_query) {
@@ -85,7 +83,7 @@ app.post('/save',(req, res) => {
                 }
                 else {
                     console.table(res_data.recordset);
-					res.redirect('/');
+		    res.redirect('/');
                 }
             });
         }
@@ -101,7 +99,7 @@ app.post('/update',(req, res) => {
             res.send(error_db);
         }
         else 
-		{
+	{
             var request = new sql.Request();
             request.query(query, function (error_query, res_data) {
                 if (error_query) {
@@ -110,7 +108,7 @@ app.post('/update',(req, res) => {
                 }
                 else {
                     console.table(res_data.recordset);
-					res.redirect('/');
+		    res.redirect('/');
                 }
             });
         }
@@ -126,7 +124,7 @@ app.post('/delete',(req, res) => {
             res.send(error_db);
         }
         else 
-		{
+	{
             var request = new sql.Request();
             request.query(query, function (error_query, res_data) {
                 if (error_query) {
@@ -135,7 +133,7 @@ app.post('/delete',(req, res) => {
                 }
                 else {
                     console.table(res_data.recordset);
-					res.redirect('/');
+		    res.redirect('/');
                 }
             });
         }
